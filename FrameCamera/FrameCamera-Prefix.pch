@@ -11,4 +11,12 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import <SystemConfiguration/SystemConfiguration.h>
+    #import <MobileCoreServices/MobileCoreServices.h>
+    #import "NimbusCore.h"
+    #import "NimbusWebController.h"
+    #import "NimbusPagingScrollView.h"
+    #import "NimbusPhotos.h"
+    #import "NimbusCSS.h"
+    #import "AFNetworking.h"
 #endif
