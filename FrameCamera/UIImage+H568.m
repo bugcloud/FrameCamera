@@ -19,11 +19,22 @@
         method_exchangeImplementations(
                                        class_getClassMethod(self, @selector(imageNamed:)),
                                        class_getClassMethod(self, @selector(imageNamedH568:)));
+        
+        method_exchangeImplementations(
+                                       class_getClassMethod(self, @selector(imageWithContentsOfFile:)),
+                                       class_getClassMethod(self, @selector(imageWithContentsOfFileH568:)));
     }
 }
 
 + (UIImage *)imageNamedH568:(NSString *)imageName {
-    
+    return [UIImage imageNamedH568:[self imageNameH568:imageName isBundleResource:YES]];
+}
+
++ (UIImage *)imageWithContentsOfFileH568:(NSString *)path {
+    return [UIImage imageWithContentsOfFileH568:[self imageNameH568:path isBundleResource:NO]];
+}
+
++ (NSString *)imageNameH568:(NSString *)imageName isBundleResource:(BOOL)isBundle {
     NSMutableString *imageNameMutable = [imageName mutableCopy];
     
     //Delete png extension
@@ -40,15 +51,23 @@
         [imageNameMutable appendString:@"-568h@2x"];
     }
     
-    //Check if the image exists and load the new 568 if so or the original name if not
-    NSString *imagePath = [[NSBundle mainBundle] pathForResource:imageNameMutable ofType:@"png"];
-    if (imagePath) {
-        //Remove the @2x to load with the correct scale 2.0
-        [imageNameMutable replaceOccurrencesOfString:@"@2x" withString:@"" options:NSBackwardsSearch range:NSMakeRange(0, [imageNameMutable length])];
-        return [UIImage imageNamedH568:imageNameMutable];
+    NSString *returnName = imageName;
+    if (isBundle) {
+        //Check if the image exists and load the new 568 if so or the original name if not
+        NSString *imagePath = [[NSBundle mainBundle] pathForResource:imageNameMutable ofType:@"png"];
+        if (imagePath) {
+            //Remove the @2x to load with the correct scale 2.0
+            [imageNameMutable replaceOccurrencesOfString:@"@2x" withString:@"" options:NSBackwardsSearch range:NSMakeRange(0, [imageNameMutable length])];
+            returnName = imageNameMutable;
+        }
     } else {
-        return [UIImage imageNamedH568:imageName];
+        [imageNameMutable appendString:@".png"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if ([fileManager fileExistsAtPath:imageNameMutable]) {
+            returnName = imageNameMutable;
+        }
     }
+    return returnName;
 }
 
 @end
