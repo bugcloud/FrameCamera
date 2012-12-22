@@ -192,11 +192,7 @@ dateLabel_, hideFrameButton_, settingButton_, gridImageView_;
         if (self.settingViewController_.valueForDateVisibleSetting_) {
             NSDateFormatter *dtf = [[NSDateFormatter alloc] init];
             [dtf setDateFormat:@"yyyy/MM/dd"];
-            if (self.frameIndex_ == 4) {
-                [[UIColor blackColor] set];
-            } else {
-                [[UIColor whiteColor] set];
-            }
+            [[UIColor whiteColor] set];
             int y = 72;
             int fontSize = 96;
             if (rect.size.width > 1936) {
