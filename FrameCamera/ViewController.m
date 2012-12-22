@@ -7,8 +7,7 @@
 //
 
 #import "ViewController.h"
-
-#define LOG(A, ...) NSLog(@"DEBUG: %s:%d:%@", __PRETTY_FUNCTION__,__LINE__,[NSString stringWithFormat:A, ## __VA_ARGS__]);
+#import "Macros.h"
 
 @interface ViewController ()
 

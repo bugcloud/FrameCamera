@@ -187,6 +187,7 @@
 /* Begin PBXFileReference section */
 		DD1BE26B168455B700C2D361 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		DD1BE26E168455C200C2D361 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		DD34571E1685FB7100722C8D /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		DDB6858A167F1A6400FA69F5 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../nimbus/src/core/src/NICommonMetrics.h; sourceTree = "<group>"; };
 		DDB6858B167F1A6400FA69F5 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../nimbus/src/core/src/NICommonMetrics.m; sourceTree = "<group>"; };
 		DDB6858C167F1A6400FA69F5 /* NIDataStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDataStructures.h; path = ../nimbus/src/core/src/NIDataStructures.h; sourceTree = "<group>"; };
@@ -636,6 +637,7 @@
 				DDF89F0F1671D4CC0083BF48 /* ImageView.h */,
 				DDF89F101671D4CC0083BF48 /* ImageView.m */,
 				DDF89E9D1671CDD40083BF48 /* Supporting Files */,
+				DD34571E1685FB7100722C8D /* Macros.h */,
 			);
 			path = FrameCamera;
 			sourceTree = "<group>";
