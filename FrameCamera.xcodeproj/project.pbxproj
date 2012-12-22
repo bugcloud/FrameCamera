@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD1BE26C168455B700C2D361 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1BE26B168455B700C2D361 /* AssetsLibrary.framework */; };
+		DD1BE26F168455C200C2D361 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1BE26E168455C200C2D361 /* ImageIO.framework */; };
+		DD1BE270168455CC00C2D361 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1BE26B168455B700C2D361 /* AssetsLibrary.framework */; };
+		DD1BE271168455D100C2D361 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1BE26E168455C200C2D361 /* ImageIO.framework */; };
 		DDB685B5167F1A6400FA69F5 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB6858B167F1A6400FA69F5 /* NICommonMetrics.m */; };
 		DDB685B6167F1A6400FA69F5 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB6858B167F1A6400FA69F5 /* NICommonMetrics.m */; };
 		DDB685B7167F1A6400FA69F5 /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB6858D167F1A6400FA69F5 /* NIDataStructures.m */; };
@@ -181,6 +185,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD1BE26B168455B700C2D361 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		DD1BE26E168455C200C2D361 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		DDB6858A167F1A6400FA69F5 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../nimbus/src/core/src/NICommonMetrics.h; sourceTree = "<group>"; };
 		DDB6858B167F1A6400FA69F5 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../nimbus/src/core/src/NICommonMetrics.m; sourceTree = "<group>"; };
 		DDB6858C167F1A6400FA69F5 /* NIDataStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDataStructures.h; path = ../nimbus/src/core/src/NIDataStructures.h; sourceTree = "<group>"; };
@@ -368,6 +374,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD1BE271168455D100C2D361 /* ImageIO.framework in Frameworks */,
+				DD1BE270168455CC00C2D361 /* AssetsLibrary.framework in Frameworks */,
 				DDB68689167F20B600FA69F5 /* MobileCoreServices.framework in Frameworks */,
 				DDB68686167F1F8300FA69F5 /* SystemConfiguration.framework in Frameworks */,
 				DDF89E971671CDD40083BF48 /* UIKit.framework in Frameworks */,
@@ -380,6 +388,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD1BE26F168455C200C2D361 /* ImageIO.framework in Frameworks */,
+				DD1BE26C168455B700C2D361 /* AssetsLibrary.framework in Frameworks */,
 				DDB6868A167F20BE00FA69F5 /* MobileCoreServices.framework in Frameworks */,
 				DDB68687167F1F9200FA69F5 /* SystemConfiguration.framework in Frameworks */,
 				DDF89EBB1671CDD40083BF48 /* SenTestingKit.framework in Frameworks */,
@@ -575,6 +585,8 @@
 		DDF89E871671CDD40083BF48 = {
 			isa = PBXGroup;
 			children = (
+				DD1BE26E168455C200C2D361 /* ImageIO.framework */,
+				DD1BE26B168455B700C2D361 /* AssetsLibrary.framework */,
 				DDB68586167F199C00FA69F5 /* Nimbus */,
 				DDF89E9C1671CDD40083BF48 /* FrameCamera */,
 				DDF89EC01671CDD40083BF48 /* FrameCameraTests */,

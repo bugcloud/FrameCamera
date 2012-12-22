@@ -213,7 +213,7 @@ dateLabel_, hideFrameButton_, settingButton_, gridImageView_;
     }
     
     if (self.delegate)
-        [self.delegate didTakePicture:image pushToCameraRoll:willSave];
+        [self.delegate didTakePicture:image pushToCameraRoll:willSave metaData:info];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

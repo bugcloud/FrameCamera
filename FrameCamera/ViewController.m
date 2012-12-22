@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#define LOG(A, ...) NSLog(@"DEBUG: %s:%d:%@", __PRETTY_FUNCTION__,__LINE__,[NSString stringWithFormat:A, ## __VA_ARGS__]);
+
 @interface ViewController ()
 
 @end
@@ -50,12 +52,29 @@
 #pragma mark -
 #pragma mark CameraViewControllerDelegate
 
-- (void)didTakePicture:(UIImage *)picture pushToCameraRoll:(BOOL)willSave
+- (void)didTakePicture:(UIImage *)picture pushToCameraRoll:(BOOL)willSave metaData:(NSDictionary *)info
 {
     if (willSave) {
-        UIImageWriteToSavedPhotosAlbum(picture, nil, nil , nil);
+        ALAssetsLibrary *lib = [[ALAssetsLibrary alloc] init];
+        NSMutableDictionary *meta = [[info objectForKey:UIImagePickerControllerMediaMetadata] mutableCopy];
+        // Remove orientation information from metadata
+        [meta removeObjectForKey:@"Orientation"];
+        
+        // Set Frame No to Exif info
+        NSString *exifKey = @"{Exif}";
+        NSMutableDictionary *metaExif = [meta objectForKey:exifKey];
+        [metaExif setObject:[NSString stringWithFormat:@"%d", (self.cameraViewController_.frameIndex_ + 1)]
+                     forKey:@"FrameNo"];
+        [meta setObject:metaExif forKey:exifKey];
+        
+        //LOG([meta description]);
+        [lib writeImageToSavedPhotosAlbum:picture.CGImage
+                                 metadata:meta
+                          completionBlock:^(NSURL* url, NSError* error){
+                              [self dismissViewControllerAnimated:YES completion:nil];
+                          }
+        ];
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didFinishWithCamera
