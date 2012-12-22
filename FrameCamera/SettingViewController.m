@@ -30,7 +30,6 @@ switchForDateVisibleSetting_, switchForGridVisibleSetting_, textFieldForNameSett
         self.valueForDateVisibleSetting_ = [defaults boolForKey:self.keyForDateVisibleSetting_];
         self.valueForGridVisibleSetting_ = [defaults boolForKey:self.keyForGridVisibleSetting_];
         self.valueForUserNameSetting_ = [defaults stringForKey:self.keyForUserNameSetting_];
-        [self.textFieldForNameSetting_ setText:self.valueForUserNameSetting_];
     }
     return self;
 }
@@ -38,7 +37,7 @@ switchForDateVisibleSetting_, switchForGridVisibleSetting_, textFieldForNameSett
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self.textFieldForNameSetting_ setText:self.valueForUserNameSetting_];
 }
 
 - (void)didReceiveMemoryWarning
