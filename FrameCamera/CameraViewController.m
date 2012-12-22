@@ -7,6 +7,7 @@
 //
 
 #import "CameraViewController.h"
+#import "Macros.h"
 #import "UIImage+H568.h"
 
 @interface CameraViewController ()
@@ -26,15 +27,6 @@ dateLabel_, hideFrameButton_, settingButton_, gridImageView_;
         self.settingViewController_ = [[SettingViewController alloc] initWithNibName:@"SettingViewController" bundle:nil];
         self.settingViewController_.delegate = (id)self;
         
-        NSMutableArray *imgs = [NSMutableArray array];
-        for (NSString __strong *filePath in [[NSBundle mainBundle] pathsForResourcesOfType:@"png" inDirectory:nil]) {
-            filePath = [[filePath componentsSeparatedByString:@"/"] lastObject];
-            if ([filePath hasPrefix:@"frame"] && [filePath rangeOfString:@"@"].length == 0) {
-                [imgs addObject:[UIImage imageNamed:filePath]];
-            }
-        }
-        self.frameImages_ = [NSArray arrayWithArray:imgs];
-        self.frameIndex_ = 0;
         self.imagePickerController_ = [[UIImagePickerController alloc] init];
         self.imagePickerController_.delegate = self;
         //add current date
@@ -50,25 +42,11 @@ dateLabel_, hideFrameButton_, settingButton_, gridImageView_;
         
         //initialization of UIScrollView
         scrollView_.pagingEnabled = YES;
-        scrollView_.contentSize = CGSizeMake(
-                                             scrollView_.frame.size.width * [self.frameImages_ count],
-                                             scrollView_.frame.size.height
-                                             );
         scrollView_.showsHorizontalScrollIndicator = NO;
         scrollView_.showsVerticalScrollIndicator = NO;
         scrollView_.scrollsToTop = NO;
         scrollView_.delegate = self;
-        
-        ImageView *iv = [[ImageView alloc] initWithFrame:CGRectMake(
-                                                                    0,
-                                                                    0,
-                                                                    self.view.frame.size.width * [self.frameImages_ count],
-                                                                    self.view.frame.size.height
-                                                                    )
-                         ];
-        iv.imageList_ = self.frameImages_;
-        iv.backgroundColor = [UIColor clearColor];
-        [self.scrollView_ addSubview:iv];
+        [self updateFrameImages];
         
         // Add the hide frame button
         self.hideFrameButton_ = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -142,6 +120,55 @@ dateLabel_, hideFrameButton_, settingButton_, gridImageView_;
     } else {
         [self.gridImageView_ setHidden:NO];
     }
+}
+
+-(void)updateFrameImages
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *contents;
+    BOOL useDefaultBundle = self.settingViewController_.valueForUserNameSetting_ == nil ||
+    [self.settingViewController_.valueForUserNameSetting_ length] <= 0;
+    if (useDefaultBundle) {
+        contents = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" inDirectory:nil];
+    } else {
+        contents = [fileManager contentsOfDirectoryAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+                                                    error:nil];
+    }
+    
+    NSMutableArray *imgs = [NSMutableArray array];
+    for (NSString __strong *filePath in contents) {
+        if (useDefaultBundle) {
+            filePath = [[filePath componentsSeparatedByString:@"/"] lastObject];
+        }
+        if ([filePath hasPrefix:@"frame"] && [filePath rangeOfString:@"@"].length == 0) {
+            if (useDefaultBundle) {
+                [imgs addObject:[UIImage imageNamed:filePath]];
+            } else {
+                filePath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+                            stringByAppendingPathComponent:filePath];
+                [imgs addObject:[UIImage imageWithContentsOfFile:filePath]];
+            }
+        }
+    }
+    self.frameImages_ = [NSArray arrayWithArray:imgs];
+    self.frameIndex_ = 0;
+    scrollView_.contentSize = CGSizeMake(
+                                         scrollView_.frame.size.width * [self.frameImages_ count],
+                                         scrollView_.frame.size.height
+                                         );
+    ImageView *iv = [[ImageView alloc] initWithFrame:CGRectMake(
+                                                                0,
+                                                                0,
+                                                                self.view.frame.size.width * [self.frameImages_ count],
+                                                                self.view.frame.size.height
+                                                                )
+                     ];
+    iv.imageList_ = self.frameImages_;
+    iv.backgroundColor = [UIColor clearColor];
+    for (UIView *view in self.scrollView_.subviews) {
+        [view removeFromSuperview];
+    }
+    [self.scrollView_ addSubview:iv];
 }
 
 - (void)hideFrame:(id)sender
@@ -244,6 +271,7 @@ dateLabel_, hideFrameButton_, settingButton_, gridImageView_;
     self.settingViewController_.view.center = offScreenCenter;
     [UIView commitAnimations];
     
+    [self updateFrameImages];
     [self updateOverLayFrame];
 }
 
