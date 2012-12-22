@@ -44,6 +44,6 @@ SettingViewControllerDelegate
 @end
 
 @protocol CameraViewControllerDelegate
-- (void)didTakePicture:(UIImage *)picture pushToCameraRoll:(BOOL)willSave;
+- (void)didTakePicture:(UIImage *)picture pushToCameraRoll:(BOOL)willSave metaData:(NSDictionary *)info;
 - (void)didFinishWithCamera;
 @end
