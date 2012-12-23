@@ -57,7 +57,7 @@ dateLabel_, hideFrameButton_, settingButton_, gridImageView_;
         [self.hideFrameButton_ setImage:buttonImageNormal forState:UIControlStateNormal];
         [self.hideFrameButton_ setImage:buttonImageNormal forState:UIControlStateDisabled];
         [self.hideFrameButton_ setImage:buttonImagePushed forState:UIControlEventTouchDown];
-        [self.hideFrameButton_ addTarget:self action:@selector(hideFrame:) forControlEvents:UIControlEventTouchUpInside];
+        [self.hideFrameButton_ addTarget:self action:@selector(toggleFrame:) forControlEvents:UIControlEventTouchUpInside];
         [self.imagePickerController_.view addSubview: self.hideFrameButton_];
         
         // Add the setting button
@@ -171,21 +171,33 @@ dateLabel_, hideFrameButton_, settingButton_, gridImageView_;
     [self.scrollView_ addSubview:iv];
 }
 
-- (void)hideFrame:(id)sender
+- (void)toggleFrame:(id)sender
 {
     if (self.view.frame.size.width == 0) {
-        // Reset frame size
-        CGSize screenSize = [UIScreen mainScreen].bounds.size;
-        CGRect statusBarRect = [[UIApplication sharedApplication] statusBarFrame];
-        self.view.frame = CGRectMake(0, 0, screenSize.width, screenSize.height - statusBarRect.size.height);
+        [self resetFrameSize];
     } else {
         //This line is need to make the default camera control buttons enabled
         self.view.frame = CGRectZero;
     }
 }
 
+-(void)resetFrameSize
+{
+    // Reset frame size
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    CGRect statusBarRect = [[UIApplication sharedApplication] statusBarFrame];
+    self.view.frame = CGRectMake(0, 0, screenSize.width, screenSize.height - statusBarRect.size.height);
+}
+
 - (void)showSetting:(id)sender
 {
+    // Show frame forcibly when showing setting view
+    // If frame is invisible(self.view.frame == CGRectZero),
+    // resetting frame images on scrollview will be failed
+    if (self.view.frame.size.width == 0) {
+        [self resetFrameSize];
+    }
+    
     CGSize screenCenter = [UIScreen mainScreen].bounds.size;
     CGPoint offScreenCenter = CGPointMake(screenCenter.width / 2.0, screenCenter.height * 1.5);
     self.settingViewController_.view.center = offScreenCenter;
