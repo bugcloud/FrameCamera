@@ -63,8 +63,8 @@
         // Set Frame No to Exif info
         NSString *exifKey = @"{Exif}";
         NSMutableDictionary *metaExif = [meta objectForKey:exifKey];
-        [metaExif setObject:[NSString stringWithFormat:@"%d", (self.cameraViewController_.frameIndex_ + 1)]
-                     forKey:@"FrameNo"];
+        [metaExif setObject:[NSString stringWithFormat:@"Frame number is %d", (self.cameraViewController_.frameIndex_ + 1)]
+                     forKey:@"UserComment"];
         [meta setObject:metaExif forKey:exifKey];
         
         //LOG([meta description]);
