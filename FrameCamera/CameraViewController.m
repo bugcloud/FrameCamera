@@ -50,7 +50,7 @@ dateLabel_, hideFrameButton_, settingButton_, gridImageView_;
         
         // Add the hide frame button
         self.hideFrameButton_ = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.hideFrameButton_.frame = CGRectMake(102, 2, 48, 49);
+        self.hideFrameButton_.frame = CGRectMake(266, 55, 48, 49);
         UIImage *buttonImageNormal = [UIImage imageNamed:@"btn_frame"];
         UIImage *buttonImagePushed = [UIImage imageNamed:@"btn_frame_push"];
         [self.hideFrameButton_ setAlpha:0.5f];
@@ -62,7 +62,7 @@ dateLabel_, hideFrameButton_, settingButton_, gridImageView_;
         
         // Add the setting button
         self.settingButton_ = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.settingButton_.frame = CGRectMake(170, 2, 48, 49);
+        self.settingButton_.frame = CGRectMake(266, 105, 48, 49);
         UIImage *settingButtonImageNormal = [UIImage imageNamed:@"btn_setting"];
         UIImage *settingButtonImagePushed = [UIImage imageNamed:@"btn_setting_push"];
         [self.settingButton_ setAlpha:0.5f];
