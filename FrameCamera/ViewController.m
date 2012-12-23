@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "Macros.h"
+#import "MBProgressHUD.h"
 
 @interface ViewController ()
 
@@ -62,17 +63,20 @@
         // Set Frame No to Exif info
         NSString *exifKey = @"{Exif}";
         NSMutableDictionary *metaExif = [meta objectForKey:exifKey];
-        [metaExif setObject:[NSString stringWithFormat:@"%d", (self.cameraViewController_.frameIndex_ + 1)]
-                     forKey:@"FrameNo"];
+        [metaExif setObject:[NSString stringWithFormat:@"Frame number is %d", (self.cameraViewController_.frameIndex_ + 1)]
+                     forKey:@"UserComment"];
         [meta setObject:metaExif forKey:exifKey];
         
         //LOG([meta description]);
         [lib writeImageToSavedPhotosAlbum:picture.CGImage
                                  metadata:meta
                           completionBlock:^(NSURL* url, NSError* error){
-                              [self dismissViewControllerAnimated:YES completion:nil];
+                              [self dismissViewControllerAnimated:YES completion:^(){
+                                  [self showImagePicker:UIImagePickerControllerSourceTypeCamera];
+                              }];
                           }
         ];
+        [MBProgressHUD hideHUDForView:self.cameraViewController_.view animated:YES];
     }
 }
 
