@@ -119,6 +119,10 @@
 		DDB68687167F1F9200FA69F5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDB68685167F1F8300FA69F5 /* SystemConfiguration.framework */; };
 		DDB68689167F20B600FA69F5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDB68688167F20B600FA69F5 /* MobileCoreServices.framework */; };
 		DDB6868A167F20BE00FA69F5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDB68688167F20B600FA69F5 /* MobileCoreServices.framework */; };
+		DDC967971686D6BB00F37A69 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC967961686D6BB00F37A69 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DDC967981686D6BB00F37A69 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC967961686D6BB00F37A69 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DDC9679C1686E5D100F37A69 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC9679B1686E5D100F37A69 /* MBProgressHUD.m */; };
+		DDC9679D1686E5D100F37A69 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC9679B1686E5D100F37A69 /* MBProgressHUD.m */; };
 		DDF89E971671CDD40083BF48 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF89E961671CDD40083BF48 /* UIKit.framework */; };
 		DDF89E991671CDD40083BF48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF89E981671CDD40083BF48 /* Foundation.framework */; };
 		DDF89E9B1671CDD40083BF48 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF89E9A1671CDD40083BF48 /* CoreGraphics.framework */; };
@@ -187,6 +191,7 @@
 /* Begin PBXFileReference section */
 		DD1BE26B168455B700C2D361 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		DD1BE26E168455C200C2D361 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		DD34571E1685FB7100722C8D /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		DDB6858A167F1A6400FA69F5 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../nimbus/src/core/src/NICommonMetrics.h; sourceTree = "<group>"; };
 		DDB6858B167F1A6400FA69F5 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../nimbus/src/core/src/NICommonMetrics.m; sourceTree = "<group>"; };
 		DDB6858C167F1A6400FA69F5 /* NIDataStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDataStructures.h; path = ../nimbus/src/core/src/NIDataStructures.h; sourceTree = "<group>"; };
@@ -315,6 +320,10 @@
 		DDB68680167F1D4600FA69F5 /* NIPagingScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollViewPage.h; path = ../nimbus/src/pagingscrollview/src/NIPagingScrollViewPage.h; sourceTree = "<group>"; };
 		DDB68685167F1F8300FA69F5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DDB68688167F20B600FA69F5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		DDC967951686D6BB00F37A69 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = ../nimbus/thirdparty/JSONKit/JSONKit.h; sourceTree = "<group>"; };
+		DDC967961686D6BB00F37A69 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = ../nimbus/thirdparty/JSONKit/JSONKit.m; sourceTree = "<group>"; };
+		DDC9679A1686E5D100F37A69 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		DDC9679B1686E5D100F37A69 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		DDF89E921671CDD40083BF48 /* FrameCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrameCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF89E961671CDD40083BF48 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DDF89E981671CDD40083BF48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -404,6 +413,7 @@
 		DDB68586167F199C00FA69F5 /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
+				DDC967941686D69600F37A69 /* JSONKit */,
 				DDB68676167F1D1D00FA69F5 /* PagingScrollView */,
 				DDB6864B167F1CBE00FA69F5 /* AFNetworking */,
 				DDB685E2167F1C1900FA69F5 /* Css */,
@@ -582,11 +592,28 @@
 			name = PagingScrollView;
 			sourceTree = "<group>";
 		};
+		DDC967941686D69600F37A69 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				DDC967951686D6BB00F37A69 /* JSONKit.h */,
+				DDC967961686D6BB00F37A69 /* JSONKit.m */,
+			);
+			name = JSONKit;
+			sourceTree = "<group>";
+		};
+		DDC967991686E5B600F37A69 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				DDC9679A1686E5D100F37A69 /* MBProgressHUD.h */,
+				DDC9679B1686E5D100F37A69 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		DDF89E871671CDD40083BF48 = {
 			isa = PBXGroup;
 			children = (
-				DD1BE26E168455C200C2D361 /* ImageIO.framework */,
-				DD1BE26B168455B700C2D361 /* AssetsLibrary.framework */,
+				DDC967991686E5B600F37A69 /* MBProgressHUD */,
 				DDB68586167F199C00FA69F5 /* Nimbus */,
 				DDF89E9C1671CDD40083BF48 /* FrameCamera */,
 				DDF89EC01671CDD40083BF48 /* FrameCameraTests */,
@@ -607,6 +634,8 @@
 		DDF89E951671CDD40083BF48 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD1BE26E168455C200C2D361 /* ImageIO.framework */,
+				DD1BE26B168455B700C2D361 /* AssetsLibrary.framework */,
 				DDB68688167F20B600FA69F5 /* MobileCoreServices.framework */,
 				DDB68685167F1F8300FA69F5 /* SystemConfiguration.framework */,
 				DDF89E961671CDD40083BF48 /* UIKit.framework */,
@@ -636,6 +665,7 @@
 				DDF89F0F1671D4CC0083BF48 /* ImageView.h */,
 				DDF89F101671D4CC0083BF48 /* ImageView.m */,
 				DDF89E9D1671CDD40083BF48 /* Supporting Files */,
+				DD34571E1685FB7100722C8D /* Macros.h */,
 			);
 			path = FrameCamera;
 			sourceTree = "<group>";
@@ -908,6 +938,8 @@
 				DDB68674167F1D0A00FA69F5 /* UIImageView+AFNetworking.m in Sources */,
 				DDB68681167F1D4600FA69F5 /* NIPageView.m in Sources */,
 				DDB68683167F1D4600FA69F5 /* NIPagingScrollView.m in Sources */,
+				DDC967971686D6BB00F37A69 /* JSONKit.m in Sources */,
+				DDC9679C1686E5D100F37A69 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,6 +1003,8 @@
 				DDB68675167F1D0A00FA69F5 /* UIImageView+AFNetworking.m in Sources */,
 				DDB68682167F1D4600FA69F5 /* NIPageView.m in Sources */,
 				DDB68684167F1D4600FA69F5 /* NIPagingScrollView.m in Sources */,
+				DDC967981686D6BB00F37A69 /* JSONKit.m in Sources */,
+				DDC9679D1686E5D100F37A69 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
