@@ -7,6 +7,7 @@
 //
 
 #import "SettingViewController.h"
+#import "JSONKit.h"
 #import "Macros.h"
 
 @interface SettingViewController ()
@@ -52,10 +53,46 @@ switchForDateVisibleSetting_, switchForGridVisibleSetting_, textFieldForNameSett
     [self textFieldShouldReturn:self.textFieldForNameSetting_];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL userNameHasUpdated = self.valueForUserNameSetting_ != [defaults stringForKey:self.keyForUserNameSetting_];
     [defaults setBool:self.valueForDateVisibleSetting_ forKey:self.keyForDateVisibleSetting_];
     [defaults setBool:self.valueForGridVisibleSetting_ forKey:self.keyForGridVisibleSetting_];
     [defaults setObject:self.valueForUserNameSetting_ forKey:self.keyForUserNameSetting_];
     [defaults synchronize];
+    
+    if (
+        self.valueForUserNameSetting_ != nil &&
+        [self.valueForUserNameSetting_ length] > 0 &&
+        userNameHasUpdated
+    ) {
+        // Remove all file
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        for (NSString *p in [fileManager contentsOfDirectoryAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] error:nil]) {
+            NSString *rmFile = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:p];
+            [fileManager removeItemAtPath:rmFile error:NULL];
+        }
+        
+        // Fetch resources' json
+        NSURL *jsonUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://rad.bugcloud.com/%@/resources.js", self.valueForUserNameSetting_]];
+        NSObject *jsonObj = [[JSONDecoder decoder] mutableObjectWithData:[NSData dataWithContentsOfURL:jsonUrl]];
+        NSMutableArray *resourceUrls = [NSMutableArray arrayWithCapacity:0];
+        for (NSDictionary *dict in [jsonObj valueForKey:@"frames"]) {
+            [resourceUrls addObject:[dict objectForKey:@"img_normal"]];
+            [resourceUrls addObject:[dict objectForKey:@"img_2x"]];
+            [resourceUrls addObject:[dict objectForKey:@"img_568h"]];
+        }
+        
+        // Fetch images according to JSON
+        for (NSString __strong *url in resourceUrls) {
+            NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+            //NSString *newFileName = [[url lastPathComponent] stringByDeletingPathExtension];
+            NSString *newFile = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[url lastPathComponent]];
+            if (![imgData writeToFile:newFile atomically:YES]) {
+                //TODO
+                // Do something when app could not save image files
+                LOG(@"failed to save");
+            }
+        }
+    }
     
     if (self.delegate) {
         [self.delegate didFinishSavingSettings];
