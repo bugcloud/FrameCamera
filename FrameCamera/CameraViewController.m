@@ -8,6 +8,7 @@
 
 #import "CameraViewController.h"
 #import "Macros.h"
+#import "MBProgressHUD.h"
 #import "UIImage+H568.h"
 
 @interface CameraViewController ()
@@ -214,41 +215,50 @@ dateLabel_, hideFrameButton_, settingButton_, gridImageView_;
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
-    BOOL willSave = NO;
-    if (self.imagePickerController_.sourceType == UIImagePickerControllerSourceTypeCamera) {
-        CGSize size = [image size];
-        UIGraphicsBeginImageContext(size);
-        CGRect rect;
-        rect.origin = CGPointZero;
-        rect.size = size;
-        
-        [image drawInRect:rect];
-        [[self.frameImages_ objectAtIndex:self.frameIndex_] drawInRect:rect blendMode:kCGBlendModeNormal alpha:1.0];
-        
-        //add current date
-        //TODO I should set the position of date dynamically
-        if (self.settingViewController_.valueForDateVisibleSetting_) {
-            NSDateFormatter *dtf = [[NSDateFormatter alloc] init];
-            [dtf setDateFormat:@"yyyy/MM/dd"];
-            [[UIColor whiteColor] set];
-            int y = 72;
-            int fontSize = 96;
-            if (rect.size.width > 1936) {
-                y = 100;
-                fontSize = 110;
+    // Show loading view and call delegate to save image
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+        BOOL willSave = NO;
+        if (self.imagePickerController_.sourceType == UIImagePickerControllerSourceTypeCamera) {
+            CGSize size = [image size];
+            UIGraphicsBeginImageContext(size);
+            CGRect rect;
+            rect.origin = CGPointZero;
+            rect.size = size;
+            
+            [image drawInRect:rect];
+            [[self.frameImages_ objectAtIndex:self.frameIndex_] drawInRect:rect blendMode:kCGBlendModeNormal alpha:1.0];
+            
+            //add current date
+            //TODO I should set the position of date dynamically
+            if (self.settingViewController_.valueForDateVisibleSetting_) {
+                NSDateFormatter *dtf = [[NSDateFormatter alloc] init];
+                [dtf setDateFormat:@"yyyy/MM/dd"];
+                [[UIColor whiteColor] set];
+                int y = 72;
+                int fontSize = 96;
+                if (rect.size.width > 1936) {
+                    y = 100;
+                    fontSize = 110;
+                }
+                [[dtf stringFromDate:[NSDate date]] drawInRect:CGRectMake(rect.size.width * 0.69, y, rect.size.width, rect.size.height) withFont:[UIFont boldSystemFontOfSize:fontSize]];
             }
-            [[dtf stringFromDate:[NSDate date]] drawInRect:CGRectMake(rect.size.width * 0.69, y, rect.size.width, rect.size.height) withFont:[UIFont boldSystemFontOfSize:fontSize]];
+            
+            UIImage *mergedImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            image = mergedImage;
+            willSave = YES;
         }
-        
-        UIImage *mergedImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        image = mergedImage;
-        willSave = YES;
-    }
-    
-    if (self.delegate)
-        [self.delegate didTakePicture:image pushToCameraRoll:willSave metaData:info];
+        if (self.delegate)
+            [self.delegate didTakePicture:image pushToCameraRoll:willSave metaData:info];
+    });
+    /* Hide ProgressHUD in ViewController.m
+       - (void)didTakePicture:(UIImage *)picture pushToCameraRoll:(BOOL)willSave metaData:(NSDictionary *)info
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
+     */
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

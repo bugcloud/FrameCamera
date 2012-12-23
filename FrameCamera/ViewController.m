@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "Macros.h"
+#import "MBProgressHUD.h"
 
 @interface ViewController ()
 
@@ -70,9 +71,12 @@
         [lib writeImageToSavedPhotosAlbum:picture.CGImage
                                  metadata:meta
                           completionBlock:^(NSURL* url, NSError* error){
-                              [self dismissViewControllerAnimated:YES completion:nil];
+                              [self dismissViewControllerAnimated:YES completion:^(){
+                                  [self showImagePicker:UIImagePickerControllerSourceTypeCamera];
+                              }];
                           }
         ];
+        [MBProgressHUD hideHUDForView:self.cameraViewController_.view animated:YES];
     }
 }
 
