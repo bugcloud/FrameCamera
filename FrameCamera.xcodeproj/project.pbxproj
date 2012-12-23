@@ -121,6 +121,8 @@
 		DDB6868A167F20BE00FA69F5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDB68688167F20B600FA69F5 /* MobileCoreServices.framework */; };
 		DDC967971686D6BB00F37A69 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC967961686D6BB00F37A69 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DDC967981686D6BB00F37A69 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC967961686D6BB00F37A69 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DDC9679C1686E5D100F37A69 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC9679B1686E5D100F37A69 /* MBProgressHUD.m */; };
+		DDC9679D1686E5D100F37A69 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC9679B1686E5D100F37A69 /* MBProgressHUD.m */; };
 		DDF89E971671CDD40083BF48 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF89E961671CDD40083BF48 /* UIKit.framework */; };
 		DDF89E991671CDD40083BF48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF89E981671CDD40083BF48 /* Foundation.framework */; };
 		DDF89E9B1671CDD40083BF48 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF89E9A1671CDD40083BF48 /* CoreGraphics.framework */; };
@@ -320,6 +322,8 @@
 		DDB68688167F20B600FA69F5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		DDC967951686D6BB00F37A69 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = ../nimbus/thirdparty/JSONKit/JSONKit.h; sourceTree = "<group>"; };
 		DDC967961686D6BB00F37A69 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = ../nimbus/thirdparty/JSONKit/JSONKit.m; sourceTree = "<group>"; };
+		DDC9679A1686E5D100F37A69 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		DDC9679B1686E5D100F37A69 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		DDF89E921671CDD40083BF48 /* FrameCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrameCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF89E961671CDD40083BF48 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DDF89E981671CDD40083BF48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -597,9 +601,19 @@
 			name = JSONKit;
 			sourceTree = "<group>";
 		};
+		DDC967991686E5B600F37A69 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				DDC9679A1686E5D100F37A69 /* MBProgressHUD.h */,
+				DDC9679B1686E5D100F37A69 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		DDF89E871671CDD40083BF48 = {
 			isa = PBXGroup;
 			children = (
+				DDC967991686E5B600F37A69 /* MBProgressHUD */,
 				DDB68586167F199C00FA69F5 /* Nimbus */,
 				DDF89E9C1671CDD40083BF48 /* FrameCamera */,
 				DDF89EC01671CDD40083BF48 /* FrameCameraTests */,
@@ -925,6 +939,7 @@
 				DDB68681167F1D4600FA69F5 /* NIPageView.m in Sources */,
 				DDB68683167F1D4600FA69F5 /* NIPagingScrollView.m in Sources */,
 				DDC967971686D6BB00F37A69 /* JSONKit.m in Sources */,
+				DDC9679C1686E5D100F37A69 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -989,6 +1004,7 @@
 				DDB68682167F1D4600FA69F5 /* NIPageView.m in Sources */,
 				DDB68684167F1D4600FA69F5 /* NIPagingScrollView.m in Sources */,
 				DDC967981686D6BB00F37A69 /* JSONKit.m in Sources */,
+				DDC9679D1686E5D100F37A69 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

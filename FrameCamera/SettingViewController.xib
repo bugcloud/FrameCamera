@@ -953,7 +953,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">146</int>
+			<int key="maxID">153</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -988,11 +988,16 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="activityIndicatorView_">UIActivityIndicatorView</string>
 						<string key="switchForDateVisibleSetting_">UISwitch</string>
 						<string key="switchForGridVisibleSetting_">UISwitch</string>
 						<string key="textFieldForNameSetting_">UITextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="activityIndicatorView_">
+							<string key="name">activityIndicatorView_</string>
+							<string key="candidateClassName">UIActivityIndicatorView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="switchForDateVisibleSetting_">
 							<string key="name">switchForDateVisibleSetting_</string>
 							<string key="candidateClassName">UISwitch</string>
