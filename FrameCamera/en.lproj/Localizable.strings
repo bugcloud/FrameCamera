@@ -1,0 +1,5 @@
+/* Localized versions of Info.plist keys */
+"ok" = "OK";
+"cancel" = "Cancel";
+"failed_to_fetch_images" = "Failed to fetch images";
+"please_check_your_username" = "Please check your [User Name].";

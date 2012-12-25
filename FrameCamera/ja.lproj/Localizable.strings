@@ -1,0 +1,5 @@
+/* Localized versions of Info.plist keys */
+"ok" = "OK";
+"cancel" = "キャンセル";
+"failed_to_fetch_images" = "画像取得エラー";
+"please_check_your_username" = "[User Name]が正しく設定されているかご確認ください。";
