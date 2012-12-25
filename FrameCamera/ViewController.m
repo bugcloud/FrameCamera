@@ -61,10 +61,10 @@
         [meta removeObjectForKey:@"Orientation"];
         
         // Set Frame No to Exif info
-        NSString *exifKey = @"{Exif}";
+        NSString *exifKey = (NSString*)kCGImagePropertyExifDictionary;
         NSMutableDictionary *metaExif = [meta objectForKey:exifKey];
         [metaExif setObject:[NSString stringWithFormat:@"Frame number is %d", (self.cameraViewController_.frameIndex_ + 1)]
-                     forKey:@"UserComment"];
+                     forKey:(NSString*)kCGImagePropertyExifUserComment];
         [meta setObject:metaExif forKey:exifKey];
         
         //LOG([meta description]);
