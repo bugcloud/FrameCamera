@@ -77,23 +77,37 @@ switchForDateVisibleSetting_, switchForGridVisibleSetting_, textFieldForNameSett
             
             // Fetch resources' json
             NSURL *jsonUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://rad.bugcloud.com/%@/resources.js", self.valueForUserNameSetting_]];
-            NSObject *jsonObj = [[JSONDecoder decoder] mutableObjectWithData:[NSData dataWithContentsOfURL:jsonUrl]];
-            NSMutableArray *resourceUrls = [NSMutableArray arrayWithCapacity:0];
-            for (NSDictionary *dict in [jsonObj valueForKey:@"frames"]) {
-                [resourceUrls addObject:[dict objectForKey:@"img_normal"]];
-                [resourceUrls addObject:[dict objectForKey:@"img_2x"]];
-                [resourceUrls addObject:[dict objectForKey:@"img_568h"]];
-            }
-            
-            // Fetch images according to JSON
-            for (NSString __strong *url in resourceUrls) {
-                NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-                //NSString *newFileName = [[url lastPathComponent] stringByDeletingPathExtension];
-                NSString *newFile = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[url lastPathComponent]];
-                if (![imgData writeToFile:newFile atomically:YES]) {
-                    //TODO
-                    // Do something when app could not save image files
-                    LOG(@"failed to save");
+            NSData *jsonData = [NSData dataWithContentsOfURL:jsonUrl];
+            // Show alert unless app could get json data
+            if (jsonData == nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"failed_to_fetch_images", nil)
+                                                message:NSLocalizedString(@"please_check_your_username", nil)
+                                               delegate:self
+                                      cancelButtonTitle:NSLocalizedString(@"cancel", nil)
+                                      otherButtonTitles:NSLocalizedString(@"ok", nil), nil
+                      ] show];
+                });
+
+            } else {
+                NSObject *jsonObj = [[JSONDecoder decoder] mutableObjectWithData:jsonData];
+                NSMutableArray *resourceUrls = [NSMutableArray arrayWithCapacity:0];
+                for (NSDictionary *dict in [jsonObj valueForKey:@"frames"]) {
+                    [resourceUrls addObject:[dict objectForKey:@"img_normal"]];
+                    [resourceUrls addObject:[dict objectForKey:@"img_2x"]];
+                    [resourceUrls addObject:[dict objectForKey:@"img_568h"]];
+                }
+                
+                // Fetch images according to JSON
+                for (NSString __strong *url in resourceUrls) {
+                    NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+                    //NSString *newFileName = [[url lastPathComponent] stringByDeletingPathExtension];
+                    NSString *newFile = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[url lastPathComponent]];
+                    if (![imgData writeToFile:newFile atomically:YES]) {
+                        //TODO
+                        // Do something when app could not save image files
+                        LOG(@"failed to save");
+                    }
                 }
             }
         }

@@ -13,6 +13,7 @@
 		DD1BE271168455D100C2D361 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1BE26E168455C200C2D361 /* ImageIO.framework */; };
 		DD4AEFD31686F91600F15444 /* btn_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD4AEFD21686F91600F15444 /* btn_frame@2x.png */; };
 		DD4AEFD41686F91600F15444 /* btn_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD4AEFD21686F91600F15444 /* btn_frame@2x.png */; };
+		DDA965B1168949B3009335A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DDA965B3168949B3009335A2 /* Localizable.strings */; };
 		DDB685B5167F1A6400FA69F5 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB6858B167F1A6400FA69F5 /* NICommonMetrics.m */; };
 		DDB685B6167F1A6400FA69F5 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB6858B167F1A6400FA69F5 /* NICommonMetrics.m */; };
 		DDB685B7167F1A6400FA69F5 /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB6858D167F1A6400FA69F5 /* NIDataStructures.m */; };
@@ -195,6 +196,8 @@
 		DD1BE26E168455C200C2D361 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		DD34571E1685FB7100722C8D /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		DD4AEFD21686F91600F15444 /* btn_frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_frame@2x.png"; sourceTree = "<group>"; };
+		DDA965B2168949B3009335A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DDA965B4168949B7009335A2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DDB6858A167F1A6400FA69F5 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../nimbus/src/core/src/NICommonMetrics.h; sourceTree = "<group>"; };
 		DDB6858B167F1A6400FA69F5 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../nimbus/src/core/src/NICommonMetrics.m; sourceTree = "<group>"; };
 		DDB6858C167F1A6400FA69F5 /* NIDataStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDataStructures.h; path = ../nimbus/src/core/src/NIDataStructures.h; sourceTree = "<group>"; };
@@ -683,6 +686,7 @@
 				DDF89EA81671CDD40083BF48 /* Default.png */,
 				DDF89EAA1671CDD40083BF48 /* Default@2x.png */,
 				DDF89EAC1671CDD40083BF48 /* Default-568h@2x.png */,
+				DDA965B3168949B3009335A2 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -797,6 +801,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ja,
 			);
 			mainGroup = DDF89E871671CDD40083BF48;
 			productRefGroup = DDF89E931671CDD40083BF48 /* Products */;
@@ -842,6 +847,7 @@
 				DDF89F5C1671E95D0083BF48 /* frame02-568h@2x.png in Resources */,
 				DDF89F5F1671E9A30083BF48 /* grid-568h@2x.png in Resources */,
 				DD4AEFD31686F91600F15444 /* btn_frame@2x.png in Resources */,
+				DDA965B1168949B3009335A2 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1025,6 +1031,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		DDA965B3168949B3009335A2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DDA965B2168949B3009335A2 /* en */,
+				DDA965B4168949B7009335A2 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		DDF89E9F1671CDD40083BF48 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
