@@ -19,7 +19,8 @@
 
 @synthesize delegate, scrollView_, imagePickerController_,
 frameIndex_, frameImages_, settingViewController_,
-dateLabel_, hideFrameButton_, settingButton_, gridImageView_;
+dateLabel_, hideFrameButton_, settingButton_, gridImageView_,
+locationManager_, currentLocation_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -86,7 +87,11 @@ dateLabel_, hideFrameButton_, settingButton_, gridImageView_;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    if (self.locationManager_ == nil) {
+        self.locationManager_ = [[CLLocationManager alloc] init];
+    }
+    self.locationManager_.delegate = self;
+    [self.locationManager_ startMonitoringSignificantLocationChanges];
 }
 
 - (void)didReceiveMemoryWarning
@@ -300,6 +305,15 @@ dateLabel_, hideFrameButton_, settingButton_, gridImageView_;
 -(void) removeSettingView
 {
     [self.settingViewController_.view removeFromSuperview];
+}
+
+
+#pragma mark -
+#pragma mark CLLocationManagerDelegate
+
+- (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    self.currentLocation_ = [locations lastObject];
 }
 
 @end

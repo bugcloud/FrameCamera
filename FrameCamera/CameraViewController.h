@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "SettingViewController.h"
 #import "ImageView.h"
 
@@ -16,6 +17,7 @@
 UINavigationControllerDelegate,
 UIImagePickerControllerDelegate,
 UIScrollViewDelegate,
+CLLocationManagerDelegate,
 SettingViewControllerDelegate
 > {
     __unsafe_unretained id <CameraViewControllerDelegate> delegate;
@@ -26,6 +28,8 @@ SettingViewControllerDelegate
     UIButton *hideFrameButton_;
     UIButton *settingButton_;
     UIImageView *gridImageView_;
+    CLLocationManager *locationManager_;
+    CLLocation *currentLocation_;
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView_;
@@ -38,6 +42,8 @@ SettingViewControllerDelegate
 @property (nonatomic, retain) UIButton *hideFrameButton_;
 @property (nonatomic, retain) UIButton *settingButton_;
 @property (nonatomic, retain) UIImageView *gridImageView_;
+@property (nonatomic, retain) CLLocationManager *locationManager_;
+@property (nonatomic, retain) CLLocation *currentLocation_;
 
 - (void)setupImagePicker:(UIImagePickerControllerSourceType)sourceType;
 

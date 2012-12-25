@@ -61,11 +61,45 @@
         [meta removeObjectForKey:@"Orientation"];
         
         // Set Frame No to Exif info
-        NSString *exifKey = @"{Exif}";
+        NSString *exifKey = (NSString*)kCGImagePropertyExifDictionary;
         NSMutableDictionary *metaExif = [meta objectForKey:exifKey];
         [metaExif setObject:[NSString stringWithFormat:@"Frame number is %d", (self.cameraViewController_.frameIndex_ + 1)]
-                     forKey:@"UserComment"];
+                     forKey:(NSString*)kCGImagePropertyExifUserComment];
         [meta setObject:metaExif forKey:exifKey];
+        
+        // Set GPS meta data
+        NSString *gpsKey = (NSString*)kCGImagePropertyGPSDictionary;
+        NSMutableDictionary *metaGps = [NSMutableDictionary dictionaryWithCapacity:0];
+        CLLocation *loc = self.cameraViewController_.currentLocation_;
+        CLLocationDegrees lat = loc.coordinate.latitude;
+        CLLocationDegrees lng = loc.coordinate.longitude;
+        NSString *latRef;
+        NSString *lngRef;
+        if (lat < 0.0) {
+            lat = lat * -1.0f;
+            latRef = @"S";
+        } else {
+            latRef = @"N";
+        }
+        if (lng < 0.0) {
+            lng = lng * -1.0f;
+            lngRef = @"W";
+        } else {
+            lngRef = @"E";
+        }
+        [metaGps setObject:latRef forKey:(NSString*)kCGImagePropertyGPSLatitudeRef];
+        [metaGps setObject:lngRef forKey:(NSString*)kCGImagePropertyGPSLongitudeRef];
+        [metaGps setObject:[NSNumber numberWithFloat:loc.coordinate.latitude]
+                    forKey:(NSString*)kCGImagePropertyGPSLatitude];
+        [metaGps setObject:[NSNumber numberWithFloat:loc.coordinate.longitude]
+                    forKey:(NSString*)kCGImagePropertyGPSLongitude];
+        [metaGps setObject:loc.timestamp
+                    forKey:(NSString*)kCGImagePropertyGPSTimeStamp];
+        [metaGps setObject:[NSNumber numberWithFloat:loc.horizontalAccuracy]
+                    forKey:(NSString*)kCGImagePropertyGPSDOP];
+        [metaGps setObject:[NSNumber numberWithFloat:loc.altitude]
+                    forKey:(NSString*)kCGImagePropertyGPSAltitude];
+        [meta setObject:metaGps forKey:gpsKey];
         
         //LOG([meta description]);
         [lib writeImageToSavedPhotosAlbum:picture.CGImage

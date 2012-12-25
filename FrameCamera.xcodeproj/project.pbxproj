@@ -14,6 +14,8 @@
 		DD4AEFD31686F91600F15444 /* btn_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD4AEFD21686F91600F15444 /* btn_frame@2x.png */; };
 		DD4AEFD41686F91600F15444 /* btn_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD4AEFD21686F91600F15444 /* btn_frame@2x.png */; };
 		DDA965B1168949B3009335A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DDA965B3168949B3009335A2 /* Localizable.strings */; };
+		DDA965BE168987CC009335A2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA965BD168987CC009335A2 /* CoreLocation.framework */; };
+		DDA965C0168987D5009335A2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA965BD168987CC009335A2 /* CoreLocation.framework */; };
 		DDB685B5167F1A6400FA69F5 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB6858B167F1A6400FA69F5 /* NICommonMetrics.m */; };
 		DDB685B6167F1A6400FA69F5 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB6858B167F1A6400FA69F5 /* NICommonMetrics.m */; };
 		DDB685B7167F1A6400FA69F5 /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB6858D167F1A6400FA69F5 /* NIDataStructures.m */; };
@@ -198,6 +200,7 @@
 		DD4AEFD21686F91600F15444 /* btn_frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_frame@2x.png"; sourceTree = "<group>"; };
 		DDA965B2168949B3009335A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DDA965B4168949B7009335A2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DDA965BD168987CC009335A2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DDB6858A167F1A6400FA69F5 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../nimbus/src/core/src/NICommonMetrics.h; sourceTree = "<group>"; };
 		DDB6858B167F1A6400FA69F5 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../nimbus/src/core/src/NICommonMetrics.m; sourceTree = "<group>"; };
 		DDB6858C167F1A6400FA69F5 /* NIDataStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIDataStructures.h; path = ../nimbus/src/core/src/NIDataStructures.h; sourceTree = "<group>"; };
@@ -389,6 +392,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDA965BE168987CC009335A2 /* CoreLocation.framework in Frameworks */,
 				DD1BE271168455D100C2D361 /* ImageIO.framework in Frameworks */,
 				DD1BE270168455CC00C2D361 /* AssetsLibrary.framework in Frameworks */,
 				DDB68689167F20B600FA69F5 /* MobileCoreServices.framework in Frameworks */,
@@ -403,6 +407,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDA965C0168987D5009335A2 /* CoreLocation.framework in Frameworks */,
 				DD1BE26F168455C200C2D361 /* ImageIO.framework in Frameworks */,
 				DD1BE26C168455B700C2D361 /* AssetsLibrary.framework in Frameworks */,
 				DDB6868A167F20BE00FA69F5 /* MobileCoreServices.framework in Frameworks */,
@@ -619,6 +624,7 @@
 		DDF89E871671CDD40083BF48 = {
 			isa = PBXGroup;
 			children = (
+				DDA965BD168987CC009335A2 /* CoreLocation.framework */,
 				DDC967991686E5B600F37A69 /* MBProgressHUD */,
 				DDB68586167F199C00FA69F5 /* Nimbus */,
 				DDF89E9C1671CDD40083BF48 /* FrameCamera */,
