@@ -94,6 +94,11 @@ locationManager_, currentLocation_;
     [self.locationManager_ startMonitoringSignificantLocationChanges];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.locationManager_ stopMonitoringSignificantLocationChanges];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
