@@ -76,7 +76,7 @@ switchForDateVisibleSetting_, switchForGridVisibleSetting_, textFieldForNameSett
             }
             
             // Fetch resources' json
-            NSURL *jsonUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://rad.bugcloud.com/%@/resources.js", self.valueForUserNameSetting_]];
+            NSURL *jsonUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://rad.bugcloud.com/api/users/%@/resources", self.valueForUserNameSetting_]];
             NSData *jsonData = [NSData dataWithContentsOfURL:jsonUrl];
             // Show alert unless app could get json data
             if (jsonData == nil) {
@@ -97,17 +97,29 @@ switchForDateVisibleSetting_, switchForGridVisibleSetting_, textFieldForNameSett
                     [resourceUrls addObject:[dict objectForKey:@"img_2x"]];
                     [resourceUrls addObject:[dict objectForKey:@"img_568h"]];
                 }
-                
                 // Fetch images according to JSON
+                int count = 0;
+                int frameNumber = 0;
                 for (NSString __strong *url in resourceUrls) {
                     NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
                     //NSString *newFileName = [[url lastPathComponent] stringByDeletingPathExtension];
-                    NSString *newFile = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[url lastPathComponent]];
+                    NSString *newFileName;
+                    int ext = count % 3;
+                    if (ext == 0) frameNumber++;
+                    if (ext == 1) {
+                        newFileName = [NSString stringWithFormat:@"frame%d@2x.png", frameNumber];
+                    } else if (ext == 2) {
+                        newFileName = [NSString stringWithFormat:@"frame%d-568h@2x.png", frameNumber];
+                    } else {
+                        newFileName = [NSString stringWithFormat:@"frame%d.png", frameNumber];
+                    }
+                    NSString *newFile = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:newFileName];
                     if (![imgData writeToFile:newFile atomically:YES]) {
                         //TODO
                         // Do something when app could not save image files
                         LOG(@"failed to save");
                     }
+                    count++;
                 }
             }
         }
