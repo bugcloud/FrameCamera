@@ -57,7 +57,6 @@ switchForDateVisibleSetting_, switchForGridVisibleSetting_, textFieldForNameSett
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         // Do asynchronous process
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        BOOL userNameHasUpdated = self.valueForUserNameSetting_ != [defaults stringForKey:self.keyForUserNameSetting_];
         [defaults setBool:self.valueForDateVisibleSetting_ forKey:self.keyForDateVisibleSetting_];
         [defaults setBool:self.valueForGridVisibleSetting_ forKey:self.keyForGridVisibleSetting_];
         [defaults setObject:self.valueForUserNameSetting_ forKey:self.keyForUserNameSetting_];
@@ -65,8 +64,7 @@ switchForDateVisibleSetting_, switchForGridVisibleSetting_, textFieldForNameSett
         
         if (
             self.valueForUserNameSetting_ != nil &&
-            [self.valueForUserNameSetting_ length] > 0 &&
-            userNameHasUpdated
+            [self.valueForUserNameSetting_ length] > 0
             ) {
             // Remove all file
             NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -133,6 +131,13 @@ switchForDateVisibleSetting_, switchForGridVisibleSetting_, textFieldForNameSett
     });
 }
 
+- (IBAction)closeSettings:(id)sender
+{
+    // Hide keyboard
+    [self textFieldShouldReturn:self.textFieldForNameSetting_];
+    if (self.delegate) [self.delegate didFinishSavingSettings];
+}
+
 - (IBAction)didSwitchForDateVisibleSettingChanged:(id)sender
 {
     self.valueForDateVisibleSetting_ = ([sender isOn])? YES : NO;
@@ -148,7 +153,6 @@ switchForDateVisibleSetting_, switchForGridVisibleSetting_, textFieldForNameSett
 #pragma mark UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField
 {
-    self.valueForUserNameSetting_ = textFieldForNameSetting_.text;
     [self.textFieldForNameSetting_ resignFirstResponder];
     return YES;
 }

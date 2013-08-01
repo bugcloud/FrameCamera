@@ -33,6 +33,7 @@
 @property (nonatomic, retain) IBOutlet UITextField *textFieldForNameSetting_;
 
 - (IBAction)saveSettings:(id)sender;
+- (IBAction)closeSettings:(id)sender;
 - (IBAction)didSwitchForDateVisibleSettingChanged:(id)sender;
 - (IBAction)didSwitchForGridVisibleSettingChanged:(id)sender;
 
