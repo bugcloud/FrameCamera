@@ -50,6 +50,7 @@ switchForDateVisibleSetting_, switchForGridVisibleSetting_, textFieldForNameSett
 
 - (IBAction)saveSettings:(id)sender
 {
+    self.valueForUserNameSetting_ = self.textFieldForNameSetting_.text;
     // Hide keyboard
     [self textFieldShouldReturn:self.textFieldForNameSetting_];
     // Show loading view and fetch images
